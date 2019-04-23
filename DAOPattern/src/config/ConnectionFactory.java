@@ -11,8 +11,10 @@ public abstract class ConnectionFactory {
 	
 	public static Connection getConnection() {
 		 try {
+			 
 			 Class.forName(DRIVER);
 			 return DriverManager.getConnection(URL, USER, PASS);
+			 
 		 } catch (SQLException | ClassNotFoundException e) {
 			 throw new RuntimeException("Erro na conexão com o banco: ", e);
 		 }

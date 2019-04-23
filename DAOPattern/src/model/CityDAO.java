@@ -16,16 +16,15 @@ public class CityDAO {
 		PreparedStatement stmt = null;
 		
 		try {
-			stmt = con.prepareStatement("INSERT INTO city "
-					+ "(Name, "
-					+ "CountryCode, "
+			stmt = con.prepareStatement("INSERT INTO city ("	//Nome da tabela a inserir o dado
+					+ "Name, "									//Todas as colunas das tabelas
+					+ "CountryCode, "							//igual ao que está no banco de dados
 					+ "District, "
 					+ "Population) "
-					+ "VALUES "
-					+ "(?,?,?,?)");
+					+ "VALUES (?,?,?,?)");
 			
-			stmt.setString(1, c.getName());
-			stmt.setString(2, c.getCountryCode());
+			stmt.setString(1, c.getName());						//Primeira ?
+			stmt.setString(2, c.getCountryCode());				//Segunda ?
 			stmt.setString(3, c.getDistrict());
 			stmt.setInt(4, c.getPopulation());
 			
@@ -50,7 +49,9 @@ public class CityDAO {
 			rs = stmt.executeQuery();
 			
 			while(rs.next()) {
+				
 				City c = new City();
+				
 				c.setId(rs.getInt("ID"));
 				c.setName(rs.getString("Name"));
 				c.setDistrict(rs.getString("District"));
@@ -58,14 +59,39 @@ public class CityDAO {
 				c.setCountryCode(rs.getString("CountryCode"));
 				
 				cidades.add(c);
+				
 			}
-			
-			return cidades;
 		} catch (Exception e) {
 			throw new RuntimeException("Erro ao ler dados no banco de dados!");
 		}finally {
 			ConnectionFactory.closeConnection(con, stmt, rs);	
 		}
+		return cidades;
 	}
-	
+
+	public City readById(int id) {
+		java.sql.Connection con = ConnectionFactory.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		
+		City cidade = new City();
+		
+		try {
+			stmt = con.prepareStatement("SELECT * FROM city WHERE ID = "+id);
+			rs = stmt.executeQuery();
+				
+			cidade.setId(rs.getInt("ID"));
+			cidade.setName(rs.getString("Name"));
+			cidade.setDistrict(rs.getString("District"));
+			cidade.setPopulation(rs.getInt("Population"));
+			cidade.setCountryCode(rs.getString("CountryCode"));
+
+			return cidade;
+		} catch (Exception e) {
+			throw new RuntimeException("Erro ao ler dado por ID no banco de dados!");
+		}finally {
+			ConnectionFactory.closeConnection(con, stmt, rs);	
+		}
+		
+	}
 }
