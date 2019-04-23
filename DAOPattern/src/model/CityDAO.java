@@ -77,15 +77,19 @@ public class CityDAO {
 		City cidade = new City();
 		
 		try {
-			stmt = con.prepareStatement("SELECT * FROM city WHERE ID = "+id);
+			stmt = con.prepareStatement("SELECT * FROM city WHERE ID = ?");
+			stmt.setInt(1, id);
+			
+			
 			rs = stmt.executeQuery();
 				
-			cidade.setId(rs.getInt("ID"));
-			cidade.setName(rs.getString("Name"));
-			cidade.setDistrict(rs.getString("District"));
-			cidade.setPopulation(rs.getInt("Population"));
-			cidade.setCountryCode(rs.getString("CountryCode"));
-
+			while(rs.next()) {
+				cidade.setId(rs.getInt("ID"));
+				cidade.setName(rs.getString("Name"));
+				cidade.setDistrict(rs.getString("District"));
+				cidade.setPopulation(rs.getInt("Population"));
+				cidade.setCountryCode(rs.getString("CountryCode"));
+			}
 			return cidade;
 		} catch (Exception e) {
 			throw new RuntimeException("Erro ao ler dado por ID no banco de dados!");
