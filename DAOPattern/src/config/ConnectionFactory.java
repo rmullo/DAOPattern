@@ -1,8 +1,8 @@
-package connection;
+package config;
 
 import java.sql.*;
 
-public class ConnectionFactory {
+public abstract class ConnectionFactory {
 	
 	private static final String DRIVER = "com.mysql.jdbc.Driver";
 	private static final String URL = "jdbc:mysql://20.20.1.171:3306/world";

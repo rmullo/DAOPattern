@@ -4,7 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-import connection.ConnectionFactory;
+import config.ConnectionFactory;
 import model.City;
 import model.CityDAO;
 

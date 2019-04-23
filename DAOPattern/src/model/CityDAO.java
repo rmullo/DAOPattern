@@ -6,8 +6,7 @@ import java.util.List;
 
 import com.mysql.jdbc.Connection;
 
-
-import connection.ConnectionFactory;
+import config.ConnectionFactory;
 
 public class CityDAO {
 	
