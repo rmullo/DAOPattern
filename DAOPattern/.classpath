@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="lib" path="C:/Users/Rmullo/Downloads/mysql-connector-java-5.1.47.zip">
+	<classpathentry kind="lib" path="C:/Users/Rmullo/git/DAOPattern/DAOPattern/lib/mysql-connector-java-5.1.47-bin.jar">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
