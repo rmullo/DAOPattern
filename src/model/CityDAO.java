@@ -98,4 +98,50 @@ public class CityDAO {
 		}
 		
 	}
+        
+        public City updateCity(City city) {
+            java.sql.Connection con = ConnectionFactory.getConnection();
+            PreparedStatement stmt = null;
+            ResultSet rs = null;
+
+            try {
+                stmt = con.prepareStatement("UPDATE city SET Name = ?, District = ?, Population = ?, CountryCode = ? WHERE ID = ?");
+                stmt.setString(1, city.getName());
+                stmt.setString(2, city.getDistrict());
+                stmt.setInt(3, city.getPopulation());
+                stmt.setString(4, city.getCountryCode());
+                stmt.setInt(5, city.getId());
+
+                stmt.executeUpdate();
+                return city;
+            } catch (SQLException e) {
+                throw new RuntimeException("Erro ao atualizar cidade no banco de dados!");
+            } finally {
+                ConnectionFactory.closeConnection(con, stmt, rs);
+            }
+        }
+        
+        public boolean deleteCity(int id) {
+            java.sql.Connection con = ConnectionFactory.getConnection();
+            PreparedStatement stmt = null;
+            ResultSet rs = null;
+
+            try {
+                stmt = con.prepareStatement("DELETE FROM city WHERE ID = ?");
+                stmt.setInt(1, id);
+
+                int rowsAffected = stmt.executeUpdate();
+
+                if (rowsAffected > 0) {
+                    return true;
+                } else {
+                    return false;
+                }
+            } catch (SQLException e) {
+                throw new RuntimeException("Erro ao apagar cidade do banco de dados!");
+            } finally {
+                ConnectionFactory.closeConnection(con, stmt, rs);
+            }
+        }
+
 }
