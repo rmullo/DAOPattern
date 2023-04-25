@@ -16,15 +16,15 @@ public class CityDAO {
 		PreparedStatement stmt = null;
 		
 		try {
-			stmt = con.prepareStatement("INSERT INTO city ("	//Nome da tabela a inserir o dado
-					+ "Name, "									//Todas as colunas das tabelas
-					+ "CountryCode, "							//igual ao que está no banco de dados
+			stmt = con.prepareStatement("INSERT INTO city ("
+					+ "Name, "			
+					+ "CountryCode, "		
 					+ "District, "
 					+ "Population) "
 					+ "VALUES (?,?,?,?)");
 			
-			stmt.setString(1, c.getName());						//Primeira ?
-			stmt.setString(2, c.getCountryCode());				//Segunda ?
+			stmt.setString(1, c.getName());		
+			stmt.setString(2, c.getCountryCode());	
 			stmt.setString(3, c.getDistrict());
 			stmt.setInt(4, c.getPopulation());
 			
