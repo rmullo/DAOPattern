@@ -45,7 +45,7 @@ public class CityDAO {
 		List<City> cidades = new ArrayList<>();
 		
 		try {
-			stmt = con.prepareStatement("SELECT * FROM city");
+			stmt = con.prepareStatement("SELECT * FROM City");
 			rs = stmt.executeQuery();
 			
 			while(rs.next()) {
@@ -61,7 +61,7 @@ public class CityDAO {
 				cidades.add(c);
 				
 			}
-		} catch (Exception e) {
+		} catch (SQLException e) {
 			throw new RuntimeException("Erro ao ler dados no banco de dados!");
 		}finally {
 			ConnectionFactory.closeConnection(con, stmt, rs);	
@@ -99,7 +99,7 @@ public class CityDAO {
 		
 	}
         
-        public City updateCity(City city) {
+        public City update(City city) {
             java.sql.Connection con = ConnectionFactory.getConnection();
             PreparedStatement stmt = null;
             ResultSet rs = null;
@@ -121,7 +121,7 @@ public class CityDAO {
             }
         }
         
-        public boolean deleteCity(int id) {
+        public boolean delete(int id) {
             java.sql.Connection con = ConnectionFactory.getConnection();
             PreparedStatement stmt = null;
             ResultSet rs = null;
