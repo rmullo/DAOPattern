@@ -3,21 +3,20 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
 package app;
-
-import model.City;
-import model.CityDAO;
-
 /**
  *
  * @author romim
  */
+
+import view.TelaPrincipal;
 public class DAOPattern {
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-       
+        TelaPrincipal start = new TelaPrincipal();
+        start.setVisible(true);
     }
     
 }
