@@ -16,7 +16,7 @@ public class CityDAO {
 		PreparedStatement stmt = null;
 		
 		try {
-			stmt = con.prepareStatement("INSERT INTO city ("
+			stmt = con.prepareStatement("INSERT INTO City ("
 					+ "Name, "			
 					+ "CountryCode, "		
 					+ "District, "
@@ -77,7 +77,7 @@ public class CityDAO {
 		City cidade = new City();
 		
 		try {
-			stmt = con.prepareStatement("SELECT * FROM city WHERE ID = ?");
+			stmt = con.prepareStatement("SELECT * FROM City WHERE ID = ?");
 			stmt.setInt(1, id);
 			
 			
@@ -105,7 +105,7 @@ public class CityDAO {
             ResultSet rs = null;
 
             try {
-                stmt = con.prepareStatement("UPDATE city SET Name = ?, District = ?, Population = ?, CountryCode = ? WHERE ID = ?");
+                stmt = con.prepareStatement("UPDATE City SET Name = ?, District = ?, Population = ?, CountryCode = ? WHERE ID = ?");
                 stmt.setString(1, city.getName());
                 stmt.setString(2, city.getDistrict());
                 stmt.setInt(3, city.getPopulation());
@@ -127,7 +127,7 @@ public class CityDAO {
             ResultSet rs = null;
 
             try {
-                stmt = con.prepareStatement("DELETE FROM city WHERE ID = ?");
+                stmt = con.prepareStatement("DELETE FROM City WHERE ID = ?");
                 stmt.setInt(1, id);
 
                 int rowsAffected = stmt.executeUpdate();
